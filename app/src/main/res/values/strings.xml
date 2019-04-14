@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ShotTimer</string>
+    <string name="title_activity_historical">historicalActivity</string>
+    <string name="title_activity_statistical">statisticalActivity</string>
+    <string name="title_activity_question">questionActivity</string>
+    <string name="title_activity_timer">timerActivity</string>
 </resources>

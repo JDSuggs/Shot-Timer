@@ -4,4 +4,8 @@
     <string name="title_activity_statistical">statisticalActivity</string>
     <string name="title_activity_question">questionActivity</string>
     <string name="title_activity_timer">timerActivity</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="playAudio">Play Audio</string>
+    <string name="stopAudio">Stop Audio</string>
 </resources>

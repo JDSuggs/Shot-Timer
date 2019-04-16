@@ -31,8 +31,8 @@ public class timerActivity extends AppCompatActivity {
     Thread thread;
     long oldTime = 0;
     long newTime = 0;
-    long startTime = 0;
-
+    static long startTime = 0;
+    ;
     final Runnable updater = new Runnable() {
         public void run() {
             recordShots();
@@ -41,7 +41,13 @@ public class timerActivity extends AppCompatActivity {
     final Handler handler = new Handler();
 
     RecyclerView recyclerView;
+
     ShotRecyclerAdapter adapter;
+
+    public static long getTimer() {
+        return startTime;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +76,7 @@ public class timerActivity extends AppCompatActivity {
                             public void run() {
                                 while (thread != null) {
                                     try {
-                                        Thread.sleep(50);
+                                        Thread.sleep(20);
                                     } catch (InterruptedException e) {
                                     }
                                     handler.post(updater);
@@ -166,7 +172,7 @@ public class timerActivity extends AppCompatActivity {
 
     public void recordShots() {
         double db = decibels();
-        if (db > 60) {
+        if (db > 90) {
             newTime = getCurrentTime();
             double timeDiff = (timeDifference(oldTime,newTime));
             if (oldTime == 0) {

@@ -43,6 +43,12 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
         holder.shotNumber.setText(String.valueOf(shot.getShotNumber()));
 //        holder.shotTime.setText(String.valueOf(shot.getTime()));
         holder.shotTime.setText((shot.toString()));
+        try{
+            holder.splitTime.setText( Shot.getTimeStr(shot.getTime() - shotList.get(position-1).getTime() ));
+        }catch (Exception e){
+            holder.splitTime.setText(String.valueOf(0.0));
+        }
+
 
 
     }
@@ -56,14 +62,14 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
 
-        TextView shotNumber, shotTime;
+        TextView shotNumber, shotTime,splitTime;
 
 
         public ProductViewHolder(View itemView) {
             super(itemView);
-
             shotNumber = itemView.findViewById(R.id.shotNumber);
             shotTime = itemView.findViewById(R.id.timeShot);
+            splitTime = itemView.findViewById(R.id.splitTime   );
 
         }
     }

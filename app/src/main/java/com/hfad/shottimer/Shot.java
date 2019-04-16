@@ -23,4 +23,17 @@ public class Shot {
     public double getTime() {
         return time;
     }
+
+    @Override
+    public String toString() {
+        double milliSeconds = getTime();
+        return getTimeStr(milliSeconds);
+    }
+
+    public String getTimeStr(double milli) {
+        int milliseconds = (int)(milli % 1000);
+        int seconds = (int)(Math.floor((milli / 1000) % 60));
+        int minutes = (int)(Math.floor((milli / (60 * 1000)) % 60));
+        return minutes + ":" + seconds + "." + milliseconds;
+    }
 }

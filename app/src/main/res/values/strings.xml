@@ -8,12 +8,7 @@
     <string name="stop">Stop</string>
     <string name="playAudio">Play Audio</string>
     <string name="stopAudio">Stop Audio</string>
-
-
     <string name="shotNumber">shotNumber</string>
     <string name="timeShot">timeShot</string>
     <string name="splitTime">splitTime</string>
-
-
-
 </resources>

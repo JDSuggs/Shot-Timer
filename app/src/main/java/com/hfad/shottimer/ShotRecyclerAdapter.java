@@ -41,7 +41,8 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
 
         //binding the data with the viewholder views
         holder.shotNumber.setText(String.valueOf(shot.getShotNumber()));
-        holder.shotTime.setText(String.valueOf(shot.getTime()));
+//        holder.shotTime.setText(String.valueOf(shot.getTime()));
+        holder.shotTime.setText((shot.toString()));
 
 
     }

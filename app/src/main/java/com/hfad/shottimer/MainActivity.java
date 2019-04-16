@@ -13,6 +13,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().getDecorView().setBackgroundColor(Color.GRAY);
+        Shot shot1 = new Shot(1.1);
+        Shot shot2 = new Shot(1.2);
+        Shot shot3 = new Shot(1.3);
+        Shot shot4 = new Shot(1.4);
+        Shot.shotList.add(shot1);
+        Shot.shotList.add(shot2);
+        Shot.shotList.add(shot3);
+        Shot.shotList.add(shot4);
     }
 
     public void historicalAct(View view) {

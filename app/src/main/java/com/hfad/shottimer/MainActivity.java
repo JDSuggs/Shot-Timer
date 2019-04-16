@@ -17,9 +17,18 @@ public class MainActivity extends AppCompatActivity {
         Shot shot2 = new Shot(1.2);
         Shot shot3 = new Shot(1.3);
         Shot shot4 = new Shot(1.4);
+
+        Shot.shotList.add(shot1);
+        Shot.shotList.add(shot1);
         Shot.shotList.add(shot1);
         Shot.shotList.add(shot2);
+        Shot.shotList.add(shot2);
+        Shot.shotList.add(shot2);
         Shot.shotList.add(shot3);
+        Shot.shotList.add(shot3);
+        Shot.shotList.add(shot3);
+        Shot.shotList.add(shot4);
+        Shot.shotList.add(shot4);
         Shot.shotList.add(shot4);
     }
 

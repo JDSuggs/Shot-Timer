@@ -7,6 +7,7 @@ public class Shot {
     private int shotNumber;
     private double time;
     private double splitTime = 0;
+    private double missedShots = 0;
 
     public static ArrayList<Shot> shotList = new ArrayList<>();
 
@@ -50,5 +51,17 @@ public class Shot {
 
     public void setSplitTime(double splitTime) {
         this.splitTime = splitTime;
+    }
+
+    public double getSplitTime() {
+        return splitTime;
+    }
+
+    public double getMissedShots() {
+        return missedShots;
+    }
+
+    public void setMissedShots(double missedShots) {
+        this.missedShots = missedShots;
     }
 }

@@ -11,4 +11,18 @@
     <string name="shotNumber">shotNumber</string>
     <string name="timeShot">timeShot</string>
     <string name="splitTime">splitTime</string>
+
+    <string name="penaltyPoints">Points lost via penalty:</string>
+    <string name="sessionShots">Number of shots in session:</string>
+    <string name="averageDelayBetweenShots">Average delay between shots:</string>
+    <string name="numMissedShots">Number of missed shots:</string>
+    <string name="averageMissedShots">Average missed shots:</string>
+
+    <string name="resultspenaltyPoints">resultspenaltyPoints</string>
+    <string name="resultssessionShots">resultssessionShots</string>
+    <string name="resultsaverageDelayBetweenShots">resultsaverageDelayBetweenShots</string>
+    <string name="resultsnumMissedShots">resultsnumMissedShots</string>
+    <string name="resultsaverageMissedShots">resultsaverageMissedShots</string>
+
+
 </resources>

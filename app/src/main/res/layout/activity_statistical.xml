@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".statisticalActivity">
-
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -20,14 +23,73 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_statistical" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <GridLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        android:layout_marginTop="44dp"
+        android:alignmentMode="alignMargins"
+        android:columnCount="2"
+        android:rowCount="5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
-</android.support.design.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/averageDelayBetweenShots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/averageDelayBetweenShots"/>
+
+
+        <TextView
+            android:id="@+id/resultsAverageDelayBetweenShots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/resultsaverageDelayBetweenShots" />
+
+        <TextView
+            android:id="@+id/numMissedShots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/numMissedShots" />
+
+        <TextView
+            android:id="@+id/resultsaverageMissedShots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/resultsaverageMissedShots" />
+
+        <TextView
+            android:id="@+id/sessionShots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sessionShots" />
+
+        <TextView
+            android:id="@+id/resultssessionShots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/resultssessionShots" />
+
+        <TextView
+            android:id="@+id/penaltyPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/penaltyPoints" />
+
+        <TextView
+            android:id="@+id/resultspenaltyPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/resultspenaltyPoints" />
+
+
+    </GridLayout>
+</android.support.constraint.ConstraintLayout>

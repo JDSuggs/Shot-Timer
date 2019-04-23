@@ -53,7 +53,7 @@ public class timerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
-        Shot.shotList.clear();
+        //Shot.shotList.clear();
         Shot.COUNTER = 1;
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);

@@ -45,6 +45,7 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
         holder.shotTime.setText((shot.toString()));
         try{
             holder.splitTime.setText( Shot.getTimeStr(shot.getTime() - shotList.get(position-1).getTime() ));
+            shot.setSplitTime(shot.getTime() - shotList.get(position-1).getTime());
         }catch (Exception e){
             holder.splitTime.setText(String.valueOf(0.0));
         }

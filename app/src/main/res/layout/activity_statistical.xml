@@ -26,6 +26,7 @@
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
@@ -39,7 +40,7 @@
             android:id="@+id/averageDelayBetweenShots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/averageDelayBetweenShots"/>
+            android:text="@string/averageDelayBetweenShots" />
 
 
         <TextView

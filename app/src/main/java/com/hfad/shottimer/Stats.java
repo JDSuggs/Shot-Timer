@@ -41,6 +41,7 @@ public class Stats {
     public double getAverageMissedShots(){
         return this.averageMissedShots;
     }
+
     public static String getTimeStr(double milli) {
         int milliseconds = (int)(milli % 1000);
         int seconds = (int)(Math.floor((milli / 1000) % 60));

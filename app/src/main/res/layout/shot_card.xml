@@ -9,6 +9,7 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
         android:layout_margin="0dp">
 
         <android.support.constraint.ConstraintLayout
@@ -18,6 +19,7 @@
 
             <TextView
                 android:id="@+id/shotNumber"
+                android:background="@color/transparent"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="@string/shotNumber"
@@ -32,6 +34,7 @@
 
             <TextView
                 android:id="@+id/timeShot"
+                android:background="@color/transparent"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="@string/timeShot"
@@ -45,6 +48,7 @@
 
             <TextView
                 android:id="@+id/splitTime"
+                android:background="@color/transparent"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="@string/splitTime"

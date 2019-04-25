@@ -172,7 +172,7 @@ public class timerActivity extends AppCompatActivity {
 
     public void recordShots() {
         double db = decibels();
-        if (db > 90) {
+        if (db > 70) {
             newTime = getCurrentTime();
             double timeDiff = (timeDifference(oldTime,newTime));
             if (oldTime == 0) {

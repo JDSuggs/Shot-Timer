@@ -1,6 +1,7 @@
 package com.hfad.shottimer;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +38,17 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         //getting the shot of the specified position
-        Shot shot = shotList.get(position);
+        final Shot shot = shotList.get(position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                v.setBackgroundColor(Color.RED);
+                shot.setMissedShots(1);
+
+            }
+        });
 
         //binding the data with the viewholder views
         holder.shotNumber.setText(String.valueOf(shot.getShotNumber()));
@@ -68,6 +79,7 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
 
         public ProductViewHolder(View itemView) {
             super(itemView);
+
             shotNumber = itemView.findViewById(R.id.shotNumber);
             shotTime = itemView.findViewById(R.id.timeShot);
             splitTime = itemView.findViewById(R.id.splitTime   );

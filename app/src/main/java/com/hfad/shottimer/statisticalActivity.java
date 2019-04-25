@@ -20,20 +20,20 @@ public class statisticalActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         TextView delayShots = findViewById(R.id.resultsAverageDelayBetweenShots);
-        TextView avgMissedShot = findViewById(R.id.resultsaverageMissedShots);
+        TextView missedShots = findViewById(R.id.resultsaverageMissedShots);
         TextView penaltyPoint = findViewById(R.id.resultspenaltyPoints);
         TextView shots = findViewById(R.id.resultssessionShots);
 
         ArrayList<Shot> sessionShot = (ArrayList<Shot>)(Shot.shotList.clone());
         if (sessionShot.size() == 0){
             delayShots.setText("Not Working");
-            avgMissedShot.setText("Not Working");
+            missedShots.setText("Not Working");
             penaltyPoint.setText("Not Working");
             shots.setText("Not Working");
         }else{
             Stats stats = new Stats(sessionShot);
             delayShots.setText(String.valueOf(stats.getAverageDelayBetweenShots()));
-            avgMissedShot.setText(String.valueOf(stats.getAverageMissedShots()));
+            missedShots.setText(String.valueOf(stats.getMissedShots()));
             penaltyPoint.setText(String.valueOf(stats.getPenaltyPoints()));
             shots.setText(String.valueOf(stats.getSessionShots()));
 

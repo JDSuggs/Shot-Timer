@@ -243,7 +243,7 @@ public class timerActivity extends AppCompatActivity {
 //        text.setText(this.pathSaved);
 //    }
 
-    private void requestPermissions() {
+    public void requestPermissions() {
         ActivityCompat.requestPermissions(this, new String[]{
                         Manifest.permission.WRITE_EXTERNAL_STORAGE,
                         Manifest.permission.RECORD_AUDIO}
@@ -264,7 +264,7 @@ public class timerActivity extends AppCompatActivity {
         }
     }
 
-    private boolean checkPermissionFromDevice() {
+    public boolean checkPermissionFromDevice() {
         int write_external_storage_result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
         int record_audio_result = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
         return write_external_storage_result == PackageManager.PERMISSION_GRANTED && record_audio_result == PackageManager.PERMISSION_GRANTED;

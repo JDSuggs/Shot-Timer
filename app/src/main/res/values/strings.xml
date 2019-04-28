@@ -24,5 +24,13 @@
     <string name="resultsnumMissedShots">resultsnumMissedShots</string>
     <string name="resultsaverageMissedShots">resultsaverageMissedShots</string>
 
+    <string name="about"> \t\t\t\t\tClick the guns button to go to activity to record shots. Then, click the start
+    button to record shots. When finished, click the stop button. To denote a miss, click the shot. \n
+    \t\t\t\tFrom the main menu, click the graph for statistics from your current session. Also, from the
+    main menu, click the clipboard for a history of sessions. \n\t\t\t\t\tClicking a session will display
+    statistics. Also on statistics page, click share button to email your records as a standard
+    csv.</string>
+    <string name="createdBy">Created By:\n Jonathan Suggs and Clif Rojas</string>
+
 
 </resources>

@@ -32,5 +32,9 @@
     csv.</string>
     <string name="createdBy">Created By:\n Jonathan Suggs and Clif Rojas</string>
 
+    <string name="hint">Enter Name</string>
+    <string name="send">SEND RECORD</string>
+    <string name="chooser">Send message via...</string>
+
 
 </resources>

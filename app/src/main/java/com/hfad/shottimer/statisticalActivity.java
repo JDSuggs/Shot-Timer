@@ -1,5 +1,6 @@
 package com.hfad.shottimer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 
 public class statisticalActivity extends AppCompatActivity {
 
+//    private String csv = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,10 +22,12 @@ public class statisticalActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        TextView delayShots = findViewById(R.id.resultsAverageDelayBetweenShots);
-        TextView missedShots = findViewById(R.id.resultsaverageMissedShots);
-        TextView penaltyPoint = findViewById(R.id.resultspenaltyPoints);
+
+        final TextView delayShots = findViewById(R.id.resultsAverageDelayBetweenShots);
+        final TextView missedShots = findViewById(R.id.resultsaverageMissedShots);
+        final TextView penaltyPoint = findViewById(R.id.resultspenaltyPoints);
         TextView shots = findViewById(R.id.resultssessionShots);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
         ArrayList<Shot> sessionShot = (ArrayList<Shot>)(Shot.shotList.clone());
         if (sessionShot.size() == 0){
@@ -38,7 +43,17 @@ public class statisticalActivity extends AppCompatActivity {
             shots.setText(String.valueOf(stats.getSessionShots()));
 
         }
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String csv = delayShots.getText().toString() + "," + missedShots.getText().toString()
+                        + ","+ penaltyPoint.getText().toString();
+                Intent intent = new Intent(statisticalActivity.this, CreateMessageActivity.class);
+                intent.putExtra("CSV", csv);
+                startActivity(intent);
 
+            }
+        });
 
 
     }

@@ -18,6 +18,12 @@ import android.widget.Toast;
 import android.os.Handler;
 import android.widget.TextView;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
 
 public class timerActivity extends AppCompatActivity {
@@ -102,6 +108,18 @@ public class timerActivity extends AppCompatActivity {
 //                    btnPlay.setEnabled(true);
                     btnRecord.setEnabled(true);
 //                    btnStop.setEnabled(false);
+
+                    //Crate Statistics object upon ending the session.
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+                    String currentDateandTime = sdf.format(new Date());
+                    Stats tempStat = new Stats(Shot.shotList);
+                    tempStat.setDate(currentDateandTime);
+                    tempStat.setStatNumber(Stats.COUNTERSTAT);
+                    Stats.statList.add(tempStat);
+
+                    //Shot.shotList.clear();
+                    Stats.COUNTERSTAT++;
+
                 }
             });
 //            btnPlay.setOnClickListener(new View.OnClickListener(){

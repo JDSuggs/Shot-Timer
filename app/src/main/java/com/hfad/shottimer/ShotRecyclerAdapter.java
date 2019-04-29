@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -83,9 +82,9 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
         public ProductViewHolder(View itemView) {
             super(itemView);
 
-            shotNumber = itemView.findViewById(R.id.shotNumber);
-            shotTime = itemView.findViewById(R.id.timeShot);
-            splitTime = itemView.findViewById(R.id.splitTime   );
+            shotNumber = itemView.findViewById(R.id.statSession);
+            shotTime = itemView.findViewById(R.id.statDate);
+            splitTime = itemView.findViewById(R.id.sessionLength);
 
             cardView = itemView.findViewById(R.id.shot_card);
 

@@ -35,6 +35,9 @@
     <string name="hint">Enter Name</string>
     <string name="send">SEND RECORD</string>
     <string name="chooser">Send message via...</string>
+    <string name="statSession">statSession</string>
+    <string name="statdate">stateDate</string>
+    <string name="sessionLength">sessionLength</string>
 
 
 </resources>

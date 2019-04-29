@@ -19,7 +19,7 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/shotNumber"
+                android:id="@+id/statSession"
                 android:background="@color/transparent"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -27,14 +27,14 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/timeShot"
+                app:layout_constraintEnd_toStartOf="@+id/statDate"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
             <TextView
-                android:id="@+id/timeShot"
+                android:id="@+id/statDate"
                 android:background="@color/transparent"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -42,13 +42,13 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/splitTime"
+                app:layout_constraintEnd_toStartOf="@+id/sessionLength"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/shotNumber"
+                app:layout_constraintStart_toEndOf="@+id/statSession"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/splitTime"
+                android:id="@+id/sessionLength"
                 android:background="@color/transparent"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/timeShot"
+                app:layout_constraintStart_toEndOf="@+id/statDate"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>

@@ -1,13 +1,18 @@
 package com.hfad.shottimer;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Stats {
+    public static int COUNTERSTAT = 1;
+    private int statNumber;
+    private String date;
     private double penaltyPoints = 0;
     private double sessionShots = 0;
     private double averageDelayBetweenShots= 0;
     private double numMissedShots = 0;
     private double averageMissedShots = 0;
+    private ArrayList<Shot> sessionShotList;
     public static ArrayList<Stats> statList = new ArrayList<>();
 
     public Stats(ArrayList<Shot> sessionShots){
@@ -19,6 +24,7 @@ public class Stats {
             this.numMissedShots += sessionShots.get(i).getMissedShots();
         }
         this.averageDelayBetweenShots = this.averageDelayBetweenShots/this.sessionShots;
+        this.sessionShotList = sessionShots;
     }
 
     public double getPenaltyPoints() {
@@ -51,5 +57,28 @@ public class Stats {
         int minutes = (int)(Math.floor((milli / (60 * 1000)) % 60));
         return minutes + ":" + seconds + "." + milliseconds;
     }
+
+    public int getStatNumber() {
+        return statNumber;
+    }
+    public void setStatNumber(int COUNTERSTAT) {
+        this.statNumber =  statNumber;
+    }
+
+    public void setDate(String date){
+        this.date = date;
+    }
+    public String getDate(){
+        return this.date;
+    }
+
+    public ArrayList <Shot> getSessionShotList() {
+        return sessionShotList;
+    }
+
+    public void setSessionShotList(ArrayList <Shot> sessionShotList) {
+        this.sessionShotList = sessionShotList;
+    }
+
 
 }

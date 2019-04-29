@@ -11,7 +11,7 @@ import android.view.View;
 
 public class historicalActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    ShotRecyclerAdapter adapter;
+    StatRecyclerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +20,11 @@ public class historicalActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view_historical);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new ShotRecyclerAdapter(this,Shot.shotList);
+        adapter = new StatRecyclerAdapter(this, Stats.statList);
         recyclerView.setAdapter(adapter);
     }
 

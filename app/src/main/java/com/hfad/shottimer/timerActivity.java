@@ -117,8 +117,11 @@ public class timerActivity extends AppCompatActivity {
                     tempStat.setStatNumber(Stats.COUNTERSTAT);
                     Stats.statList.add(tempStat);
 
-                    //Shot.shotList.clear();
+                    Shot.shotList.clear();
                     Stats.COUNTERSTAT++;
+
+                    adapter.notifyDataSetChanged();
+
 
                 }
             });

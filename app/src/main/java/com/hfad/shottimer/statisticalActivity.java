@@ -32,18 +32,13 @@ public class statisticalActivity extends AppCompatActivity {
         try{
             ArrayList <Shot> sessionShot = Stats.statList.get(Stats.statList.size()-1).getSessionShotList();
             Stats stats = Stats.statList.get(Stats.statList.size()-1);
-            if (sessionShot.size() == 0){
-                delayShots.setText("Not Working");
-                missedShots.setText("Not Working");
-                penaltyPoint.setText("Not Working");
-                shots.setText("Not Working");
-            }else{
+
                 delayShots.setText(String.valueOf(stats.getAverageDelayBetweenShots()));
                 missedShots.setText(String.valueOf(stats.getMissedShots()));
                 penaltyPoint.setText(String.valueOf(stats.getPenaltyPoints()));
                 shots.setText(String.valueOf(stats.getSessionShots()));
 
-            }
+
 
         }catch (Exception e){
 

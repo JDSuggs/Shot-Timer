@@ -1,6 +1,7 @@
 package com.hfad.shottimer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -36,17 +37,23 @@ public class StatRecyclerAdapter extends RecyclerView.Adapter<StatRecyclerAdapte
     }
 
     @Override
-    public void onBindViewHolder(StatViewHolder holder, int position) {
+    public void onBindViewHolder(StatViewHolder holder, final int position) {
         try{
             //getting the stats of the specified position
             final Stats stats = statList.get(position);
             final CardView shotCard = holder.cardViewStat;
+            final Intent[] intent = new Intent[1];
             holder.itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
                     shotCard.setBackgroundColor(Color.BLUE);
+                    Stats.statList.add(stats);
+                    statList.remove(position);
+                    intent[0] =  new Intent(mCtx, statisticalActivity.class);
+                    mCtx.startActivity(intent[0]);
+
                     //stats.setMissedShots(1);
 
                 }

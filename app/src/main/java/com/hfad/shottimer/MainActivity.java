@@ -1,6 +1,8 @@
 package com.hfad.shottimer;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -12,27 +14,37 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
 
     final int REQUEST_PERMISSION_CODE = 1000;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().getDecorView().setBackgroundColor(Color.GRAY);
+        mAuth = FirebaseAuth.getInstance();
         if (checkPermissionFromDevice()) {
         } else {
             requestPermissions();
         }
-//        Shot shot1 = new Shot(1.1);
-//        Shot shot2 = new Shot(1.2);
-//        Shot shot3 = new Shot(1.3);
-//        Shot shot4 = new Shot(1.4);
-//        Shot.shotList.add(shot1);
-//        Shot.shotList.add(shot2);
-//        Shot.shotList.add(shot3);
-//        Shot.shotList.add(shot4);
+    }
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Log Out")
+                .setMessage("Are you sure you want to log out?")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        mAuth.signOut();
+                        Intent intent = new Intent(getApplicationContext(), Login.class);
+                        startActivity(intent);
+                    }
+                }).create().show();
     }
 
     public void historicalAct(View view) {

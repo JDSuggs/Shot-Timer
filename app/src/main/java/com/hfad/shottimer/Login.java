@@ -17,21 +17,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
     private static final String TAG = "Login";
     private FirebaseAuth mAuth;
+    private final FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
     private ConstraintLayout mLoggedInGroup;
     private ConstraintLayout mLoggedOutGroup;
     private TextView mNameLabel;
     private EditText mEmailField;
     private EditText mPasswordField;
+    private EditText mName;
 
 
     @Override
@@ -42,6 +52,7 @@ public class Login extends AppCompatActivity {
         mLoggedInGroup = findViewById(R.id.logged_in_group);
         mLoggedOutGroup = findViewById(R.id.logged_out_group);
         mNameLabel = findViewById(R.id.hello);
+        mName = findViewById(R.id.name);
         mEmailField = findViewById(R.id.email);
         mPasswordField = findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
@@ -58,12 +69,35 @@ public class Login extends AppCompatActivity {
         mLoggedOutGroup.setVisibility(View.VISIBLE);
     }
 
+
+
+
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
             mLoggedOutGroup.setVisibility(View.GONE);
             mLoggedInGroup.setVisibility(View.VISIBLE);
 //            mNameLabel.setText(String.format(getResources().getString(R.string.hello), currentUser.getEmail()));
-            mNameLabel.setText(mAuth.getCurrentUser().getEmail());
+            DocumentReference docRef = mDb.collection("users").document(mAuth.getCurrentUser().getUid());
+            docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (document.exists()) {
+                            Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                            mNameLabel.setText(document.get("name").toString());
+                        } else {
+                            Log.d(TAG, "No such document");
+                        }
+                    } else {
+                        Log.d(TAG, "get failed with ", task.getException());
+                    }
+                }
+            });
+
+//            mNameLabel.setText(d.);
+//            mNameLabel.setText((CharSequence) mDb.collection("users").document(mAuth.getCurrentUser().getUid()));
+//            mNameLabel.setText(mAuth.getCurrentUser().getEmail());
         } else {
             mLoggedInGroup.setVisibility(View.GONE);
             mLoggedOutGroup.setVisibility(View.VISIBLE);
@@ -151,6 +185,21 @@ public class Login extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            User u = new User(mName.getText().toString(), user.getUid());
+                            mDb.collection("users").document(mAuth.getCurrentUser()
+                                    .getUid()).set(u)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "DocumentSnapshot successfully written!");
+                                }
+                            })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error writing document", e);
+                                        }
+                                    });
                             updateUI(user);
                             h.postDelayed(r, 1000);
                         } else {

@@ -15,11 +15,13 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MainActivity extends AppCompatActivity {
 
     final int REQUEST_PERMISSION_CODE = 1000;
     private FirebaseAuth mAuth;
+    private final FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

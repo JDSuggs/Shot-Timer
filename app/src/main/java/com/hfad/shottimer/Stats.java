@@ -35,6 +35,10 @@ public class Stats {
         return totalTime;
     }
 
+    public void setTotalTime(double d) {
+        this.totalTime = d;
+    }
+
     public double getPenaltyPoints() {
         return penaltyPoints;
     }

@@ -47,7 +47,7 @@ public class timerActivity extends AppCompatActivity {
     Thread thread;
     long oldTime = 0;
     long newTime = 0;
-    static long startTime = 0;
+    long startTime = 0;
     public static int finished = 0;
 
     final Runnable updater = new Runnable() {
@@ -60,7 +60,7 @@ public class timerActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ShotRecyclerAdapter adapter;
 
-    public static long getTimer() {
+    public long getTimer() {
         return startTime;
     }
 
@@ -94,6 +94,7 @@ public class timerActivity extends AppCompatActivity {
                     if (thread == null) {
                         thread = new Thread() {
                             public void run() {
+                                oldTime = 0;
                                 while (thread != null) {
                                     try {
                                         Thread.sleep(20);
@@ -142,11 +143,18 @@ public class timerActivity extends AppCompatActivity {
             btnNew.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    if (thread != null) {
+                        thread = null;
+                    }
+                    if (Shot.shotList.size() != 0){
+                        finish();
+                    }
                     Shot.shotList.clear();
                     btnStopRecording.setEnabled(true);
                     btnRecord.setEnabled(true);
                     finished = 0;
                     Shot.COUNTER = 1;
+//                    startTime = 0;
                     adapter.notifyDataSetChanged();
 //                    btnStop.setEnabled(false);
 //                    btnPlay.setEnabled(true);
@@ -193,7 +201,7 @@ public class timerActivity extends AppCompatActivity {
             Stats tempStat = new Stats(Shot.shotList);
             tempStat.setDate(currentDateandTime);
             //                        tempStat.setStatNumber(Stats.COUNTERSTAT);
-            Stats.statList.add(tempStat);
+            Stats.statList.add(0,tempStat);
             Stats.COUNTERSTAT++;
             //                        Stats.setStatNumber();
             //Save stats to Firestore here

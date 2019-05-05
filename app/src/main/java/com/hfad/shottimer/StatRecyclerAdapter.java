@@ -56,6 +56,9 @@ public class StatRecyclerAdapter extends RecyclerView.Adapter<StatRecyclerAdapte
                     intent.putExtra("numberMissed", stats.getMissedShots());
                     intent.putExtra("totalShots", stats.getSessionShots());
                     intent.putExtra("penalty", stats.getPenaltyPoints());
+                    intent.putExtra("totalTime", Stats.getTimeStr(stats.getTotalTime()));
+                    intent.putExtra("session", stats.getStatNumber());
+                    intent.putExtra("date", stats.getDate());
                     mCtx.startActivity(intent);
 //                    intent[0] =  new Intent(mCtx, statisticalActivity.class);
 //                    mCtx.startActivity(intent[0]);

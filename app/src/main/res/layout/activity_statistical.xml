@@ -30,16 +30,50 @@
         android:layout_marginTop="44dp"
         android:alignmentMode="alignMargins"
         android:columnCount="2"
-        android:rowCount="5"
+        android:rowCount="7"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <TextView
+            android:id="@+id/session"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Session Number:" />
+
+
+        <TextView
+            android:id="@+id/sessionNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textSize="16sp"
+            android:text="@string/resultsaverageDelayBetweenShots" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Date:" />
+
+
+        <TextView
+            android:id="@+id/dateNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textSize="16sp"
+            android:text="@string/resultsaverageDelayBetweenShots" />
+
+        <TextView
             android:id="@+id/averageDelayBetweenShots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="@string/averageDelayBetweenShots" />
 
 
@@ -48,13 +82,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:textSize="16sp"
             android:text="@string/resultsaverageDelayBetweenShots" />
 
         <TextView
             android:id="@+id/numMissedShots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textSize="16sp"
             android:text="@string/numMissedShots" />
 
         <TextView
@@ -62,12 +97,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:textSize="16sp"
             android:text="@string/resultsaverageMissedShots" />
 
         <TextView
             android:id="@+id/sessionShots"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="@string/sessionShots" />
 
         <TextView
@@ -75,13 +112,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:textSize="16sp"
             android:text="@string/resultssessionShots" />
 
         <TextView
             android:id="@+id/penaltyPoints"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textSize="16sp"
             android:text="@string/penaltyPoints" />
 
         <TextView
@@ -89,7 +127,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
+            android:textSize="16sp"
             android:text="@string/resultspenaltyPoints" />
+
+        <TextView
+            android:id="@+id/totalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Total session time:" />
+
+        <TextView
+            android:id="@+id/totalTimeResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textSize="16sp"
+            android:text="time" />
 
 
     </GridLayout>

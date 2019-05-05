@@ -146,6 +146,7 @@ public class timerActivity extends AppCompatActivity {
                     btnStopRecording.setEnabled(true);
                     btnRecord.setEnabled(true);
                     finished = 0;
+                    Shot.COUNTER = 1;
                     adapter.notifyDataSetChanged();
 //                    btnStop.setEnabled(false);
 //                    btnPlay.setEnabled(true);

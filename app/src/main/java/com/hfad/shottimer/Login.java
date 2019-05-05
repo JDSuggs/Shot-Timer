@@ -56,6 +56,7 @@ public class Login extends AppCompatActivity {
         mEmailField = findViewById(R.id.email);
         mPasswordField = findViewById(R.id.password);
         mAuth = FirebaseAuth.getInstance();
+        mAuth.signOut();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);

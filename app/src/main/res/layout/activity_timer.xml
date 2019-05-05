@@ -41,31 +41,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
         android:text="Stop"
-        app:layout_constraintEnd_toStartOf="@+id/playAudio"
+        app:layout_constraintEnd_toStartOf="@+id/finish"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/start"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
     <Button
-        android:id="@+id/playAudio"
+        android:id="@+id/finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:text="@string/playAudio"
-        app:layout_constraintEnd_toStartOf="@+id/stopAudio"
+        android:text="@string/finish"
+        app:layout_constraintEnd_toStartOf="@+id/new1"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/stop"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
     <Button
-        android:id="@+id/stopAudio"
+        android:id="@+id/new1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:text="@string/stopAudio"
+        android:text="@string/new1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/playAudio"
+        app:layout_constraintStart_toEndOf="@+id/finish"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
     <android.support.v7.widget.RecyclerView

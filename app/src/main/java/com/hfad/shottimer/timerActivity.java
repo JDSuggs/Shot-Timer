@@ -37,7 +37,7 @@ import java.util.UUID;
 
 public class timerActivity extends AppCompatActivity {
     //Variables
-    Button btnRecord, btnStopRecording, btnPlay, btnStop;
+    Button btnRecord, btnStopRecording, btnFinish, btnNew;
     //    String pathSaved = "";
     MediaPlayer mediaPlayer;
     final int REQUEST_PERMISSION_CODE = 1000;
@@ -48,7 +48,8 @@ public class timerActivity extends AppCompatActivity {
     long oldTime = 0;
     long newTime = 0;
     static long startTime = 0;
-    ;
+    private static int finished = 0;
+
     final Runnable updater = new Runnable() {
         public void run() {
             recordShots();
@@ -57,7 +58,6 @@ public class timerActivity extends AppCompatActivity {
     final Handler handler = new Handler();
 
     RecyclerView recyclerView;
-
     ShotRecyclerAdapter adapter;
 
     public static long getTimer() {
@@ -78,10 +78,14 @@ public class timerActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         //Buttons for Playing and stopping
-        btnPlay = findViewById(R.id.playAudio);
+        btnFinish = findViewById(R.id.finish);
         btnRecord = findViewById(R.id.start);
-        btnStop = findViewById(R.id.stopAudio);
+        btnNew = findViewById(R.id.new1);
         btnStopRecording = findViewById(R.id.stop);
+        if (finished == 1) {
+            btnRecord.setEnabled(false);
+            btnStopRecording.setEnabled(false);
+        }
 
         if(checkPermissionFromDevice()){
             btnRecord.setOnClickListener(new View.OnClickListener(){
@@ -116,34 +120,43 @@ public class timerActivity extends AppCompatActivity {
                     thread=null;
                     btnStopRecording.setEnabled(false);
 //                    btnPlay.setEnabled(true);
-//                    btnRecord.setEnabled(true);
+                    btnRecord.setEnabled(false);
 //                    btnStop.setEnabled(false);
                 }
             });
-//            btnPlay.setOnClickListener(new View.OnClickListener(){
-//                @Override
-//                public void onClick(View view){
+            btnFinish.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view){
+                    if (thread != null) {
+                        thread = null;
+                    }
+                    if (Shot.shotList.size() != 0){
+                        finish();
+                    }
 //                    btnStop.setEnabled(true);
 //                    btnStopRecording.setEnabled(false);
 //                    btnStopRecording.setEnabled(false);
 //                    Toast.makeText(timerActivity.this, "Playing", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//            btnStop.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    btnStopRecording.setEnabled(false);
-//                    btnRecord.setEnabled(true);
+                }
+            });
+            btnNew.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Shot.shotList.clear();
+                    btnStopRecording.setEnabled(true);
+                    btnRecord.setEnabled(true);
+                    finished = 0;
+                    adapter.notifyDataSetChanged();
 //                    btnStop.setEnabled(false);
 //                    btnPlay.setEnabled(true);
-//
+
 //                    if(mediaPlayer != null){
 //                        mediaPlayer.stop();
 //                        mediaPlayer.release();
 //                        startRecorder();
 //                    }
-//                }
-//            });
+                }
+            });
         }else{
             requestPermissions();
         }
@@ -151,33 +164,46 @@ public class timerActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        if ((finished == 0) && (Shot.shotList.size() != 0)){
+            new AlertDialog.Builder(this)
+                    .setTitle("Finish Session")
+                    .setMessage("Finish the session? \nMisses may not be recorded later.")
+                    .setNegativeButton(android.R.string.no, null)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
-        new AlertDialog.Builder(this)
-                .setTitle("Finish Session")
-                .setMessage("Are you sure you want to finish the session? \nMisses may not be recorded later.")
-                .setNegativeButton(android.R.string.no, null)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface arg0, int arg1) {
 
-                    public void onClick(DialogInterface arg0, int arg1) {
+                            finish();
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    }).create().show();
+        } else {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
+    }
 
-                        //Crate Statistics object upon ending the session.
-                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/YYYY/ HH:mm:ss");
-                        String currentDateandTime = sdf.format(new Date());
-                        Stats tempStat = new Stats(Shot.shotList);
-                        tempStat.setDate(currentDateandTime);
-//                        tempStat.setStatNumber(Stats.COUNTERSTAT);
-                        Stats.statList.add(tempStat);
-                        Stats.COUNTERSTAT++;
-//                        Stats.setStatNumber();
-                        //Save stats to Firestore here
+    public void finish() {
+        //Crate Statistics object upon ending the session.
+        if (finished == 0) {
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/YYYY/ HH:mm:ss");
+            String currentDateandTime = sdf.format(new Date());
+            Stats tempStat = new Stats(Shot.shotList);
+            tempStat.setDate(currentDateandTime);
+            //                        tempStat.setStatNumber(Stats.COUNTERSTAT);
+            Stats.statList.add(tempStat);
+            Stats.COUNTERSTAT++;
+            //                        Stats.setStatNumber();
+            //Save stats to Firestore here
 
-                        Shot.shotList.clear();
-                        adapter.notifyDataSetChanged();
+            //        Shot.shotList.clear();
+            adapter.notifyDataSetChanged();
+            finished = 1;
+            btnStopRecording.setEnabled(false);
+            btnRecord.setEnabled(false);
+        }
 
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(intent);
-                    }
-                }).create().show();
     }
 
     public void onResume() {

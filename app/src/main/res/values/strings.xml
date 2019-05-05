@@ -6,6 +6,8 @@
     <string name="title_activity_timer">timerActivity</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
+    <string name="finish">Finish</string>
+    <string name="new1">New</string>
     <string name="playAudio">Play Audio</string>
     <string name="stopAudio">Stop Audio</string>
     <string name="shotNumber">shotNumber</string>

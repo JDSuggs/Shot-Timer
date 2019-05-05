@@ -45,8 +45,13 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                shotCard.setBackgroundColor(Color.RED);
-                shot.setMissedShots(1);
+                if (shot.getMissedShots() == 0) {
+                    shotCard.setBackgroundColor(Color.RED);
+                    shot.setMissedShots(1);
+                } else {
+                    shotCard.setBackgroundColor(Color.WHITE);
+                    shot.setMissedShots(0);
+                }
 
             }
         });

@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,21 +30,34 @@ public class statisticalActivity extends AppCompatActivity {
         TextView shots = findViewById(R.id.resultssessionShots);
         FloatingActionButton fab = findViewById(R.id.fab);
 
-        try{
-            ArrayList <Shot> sessionShot = Stats.statList.get(Stats.statList.size()-1).getSessionShotList();
-            Stats stats = Stats.statList.get(Stats.statList.size()-1);
-
-                delayShots.setText(String.valueOf(stats.getAverageDelayBetweenShots()));
-                missedShots.setText(String.valueOf(stats.getMissedShots()));
-                penaltyPoint.setText(String.valueOf(stats.getPenaltyPoints()));
-                shots.setText(String.valueOf(stats.getSessionShots()));
-
-
-
-        }catch (Exception e){
-
-
+        try {
+            Bundle bundle = getIntent().getExtras();
+            delayShots.setText(String.valueOf(bundle.get("avgDelayBetweenShots")));
+            missedShots.setText(String.valueOf(bundle.get("numberMissed")));
+            penaltyPoint.setText(String.valueOf(bundle.get("penalty")));
+            shots.setText(String.valueOf(bundle.get("totalShots")));
+        } catch (NullPointerException e){
+            delayShots.setText("nope");
+            missedShots.setText("nope");
+            penaltyPoint.setText("nope");
+            shots.setText("nope");
         }
+
+//        try{
+//            ArrayList <Shot> sessionShot = Stats.statList.get(Stats.statList.size()-1).getSessionShotList();
+//            Stats stats = Stats.statList.get(Stats.statList.size()-1);
+//
+//                delayShots.setText(String.valueOf(stats.getAverageDelayBetweenShots()));
+//                missedShots.setText(String.valueOf(stats.getMissedShots()));
+//                penaltyPoint.setText(String.valueOf(stats.getPenaltyPoints()));
+//                shots.setText(String.valueOf(stats.getSessionShots()));
+//
+//
+//
+//        }catch (Exception e){
+
+
+//        }
 
 
         fab.setOnClickListener(new View.OnClickListener() {

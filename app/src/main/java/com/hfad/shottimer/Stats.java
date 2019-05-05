@@ -12,8 +12,10 @@ public class Stats {
     private double averageDelayBetweenShots= 0;
     private double numMissedShots = 0;
     private double averageMissedShots = 0;
+    private double totalTime = 0;
     private ArrayList<Shot> sessionShotList;
     public static ArrayList<Stats> statList = new ArrayList<>();
+
 
     public Stats(ArrayList<Shot> sessionShots){
         this.sessionShots = Double.valueOf(sessionShots.get(sessionShots.size()-1).getShotNumber());
@@ -25,6 +27,12 @@ public class Stats {
         }
         this.averageDelayBetweenShots = this.averageDelayBetweenShots/this.sessionShots;
         this.sessionShotList = sessionShots;
+        this.totalTime = (sessionShots.get(sessionShots.size()-1).getTime());
+        this.statNumber = statList.size() + 1;
+    }
+
+    public double getTotalTime() {
+        return totalTime;
     }
 
     public double getPenaltyPoints() {
@@ -61,9 +69,9 @@ public class Stats {
     public int getStatNumber() {
         return statNumber;
     }
-    public void setStatNumber(int COUNTERSTAT) {
-        this.statNumber =  statNumber;
-    }
+//    public void setStatNumber() {
+//        this.statNumber =  statList.size() +1;
+//    }
 
     public void setDate(String date){
         this.date = date;

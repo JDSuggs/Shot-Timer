@@ -11,6 +11,9 @@ public class Shot {
 
     public static ArrayList<Shot> shotList = new ArrayList<>();
 
+    public Shot() {
+    }
+
     public Shot(double time){
         this.time = time;
         this.shotNumber = COUNTER;

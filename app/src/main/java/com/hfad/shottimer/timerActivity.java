@@ -1,6 +1,9 @@
 package com.hfad.shottimer;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -17,6 +20,11 @@ import android.widget.Button;
 import android.widget.Toast;
 import android.os.Handler;
 import android.widget.TextView;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -26,13 +34,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
+
 public class timerActivity extends AppCompatActivity {
     //Variables
     Button btnRecord, btnStopRecording, btnPlay, btnStop;
     //    String pathSaved = "";
     MediaPlayer mediaPlayer;
     final int REQUEST_PERMISSION_CODE = 1000;
-
+    private FirebaseAuth mAuth;
+    private final FirebaseFirestore mDb = FirebaseFirestore.getInstance();
     MediaRecorder mRecorder;
     Thread thread;
     long oldTime = 0;
@@ -106,23 +116,8 @@ public class timerActivity extends AppCompatActivity {
                     thread=null;
                     btnStopRecording.setEnabled(false);
 //                    btnPlay.setEnabled(true);
-                    btnRecord.setEnabled(true);
+//                    btnRecord.setEnabled(true);
 //                    btnStop.setEnabled(false);
-
-                    //Crate Statistics object upon ending the session.
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
-                    String currentDateandTime = sdf.format(new Date());
-                    Stats tempStat = new Stats(Shot.shotList);
-                    tempStat.setDate(currentDateandTime);
-                    tempStat.setStatNumber(Stats.COUNTERSTAT);
-                    Stats.statList.add(tempStat);
-
-                    Shot.shotList.clear();
-                    Stats.COUNTERSTAT++;
-
-                    adapter.notifyDataSetChanged();
-
-
                 }
             });
 //            btnPlay.setOnClickListener(new View.OnClickListener(){
@@ -152,6 +147,37 @@ public class timerActivity extends AppCompatActivity {
         }else{
             requestPermissions();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        new AlertDialog.Builder(this)
+                .setTitle("Finish Session")
+                .setMessage("Are you sure you want to finish the session? \nMisses may not be recorded later.")
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        //Crate Statistics object upon ending the session.
+                        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/YYYY/ HH:mm:ss");
+                        String currentDateandTime = sdf.format(new Date());
+                        Stats tempStat = new Stats(Shot.shotList);
+                        tempStat.setDate(currentDateandTime);
+//                        tempStat.setStatNumber(Stats.COUNTERSTAT);
+                        Stats.statList.add(tempStat);
+                        Stats.COUNTERSTAT++;
+//                        Stats.setStatNumber();
+                        //Save stats to Firestore here
+
+                        Shot.shotList.clear();
+                        adapter.notifyDataSetChanged();
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(intent);
+                    }
+                }).create().show();
     }
 
     public void onResume() {

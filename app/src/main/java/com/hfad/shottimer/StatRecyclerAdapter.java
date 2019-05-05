@@ -48,11 +48,17 @@ public class StatRecyclerAdapter extends RecyclerView.Adapter<StatRecyclerAdapte
                 @Override
                 public void onClick(View v) {
                     // TODO Auto-generated method stub
-                    shotCard.setBackgroundColor(Color.BLUE);
-                    Stats.statList.add(stats);
-                    statList.remove(position);
-                    intent[0] =  new Intent(mCtx, statisticalActivity.class);
-                    mCtx.startActivity(intent[0]);
+//                    shotCard.setBackgroundColor(Color.BLUE);
+//                    Stats.statList.add(stats);
+//                    statList.remove(position);
+                    Intent intent = new Intent(mCtx, statisticalActivity.class);
+                    intent.putExtra("avgDelayBetweenShots", stats.getAverageDelayBetweenShots());
+                    intent.putExtra("numberMissed", stats.getMissedShots());
+                    intent.putExtra("totalShots", stats.getSessionShots());
+                    intent.putExtra("penalty", stats.getPenaltyPoints());
+                    mCtx.startActivity(intent);
+//                    intent[0] =  new Intent(mCtx, statisticalActivity.class);
+//                    mCtx.startActivity(intent[0]);
 
                     //stats.setMissedShots(1);
 
@@ -65,7 +71,8 @@ public class StatRecyclerAdapter extends RecyclerView.Adapter<StatRecyclerAdapte
             holder.statTime.setText(String.valueOf(stats.getDate()));
 
             try{
-                holder.sessionLength.setText("Calculate session time!!!!");
+
+                holder.sessionLength.setText(Stats.getTimeStr(stats.getTotalTime()));
             }catch (Exception e){
                 holder.sessionLength.setText(String.valueOf(0.0));
             }

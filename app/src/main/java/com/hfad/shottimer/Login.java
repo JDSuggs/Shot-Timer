@@ -60,6 +60,12 @@ public class Login extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
 
+
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
     }
 
     @Override
@@ -76,7 +82,6 @@ public class Login extends AppCompatActivity {
         if (currentUser != null) {
             mLoggedOutGroup.setVisibility(View.GONE);
             mLoggedInGroup.setVisibility(View.VISIBLE);
-//            mNameLabel.setText(String.format(getResources().getString(R.string.hello), currentUser.getEmail()));
             DocumentReference docRef = mDb.collection("users").document(mAuth.getCurrentUser().getUid());
             docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -155,6 +160,7 @@ public class Login extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            Log.d(TAG, user.getEmail());
                             updateUI(user);
                             h.postDelayed(r, 1000);
                         } else {

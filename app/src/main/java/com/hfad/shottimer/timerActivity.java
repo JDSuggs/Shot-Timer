@@ -48,7 +48,7 @@ public class timerActivity extends AppCompatActivity {
     long oldTime = 0;
     long newTime = 0;
     static long startTime = 0;
-    private static int finished = 0;
+    public static int finished = 0;
 
     final Runnable updater = new Runnable() {
         public void run() {

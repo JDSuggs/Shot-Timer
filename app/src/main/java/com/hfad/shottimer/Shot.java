@@ -8,6 +8,7 @@ public class Shot {
     private double time;
     private double splitTime = 0;
     private double missedShots = 0;
+    private boolean missed = false;
 
     public static ArrayList<Shot> shotList = new ArrayList<>();
 
@@ -37,6 +38,14 @@ public class Shot {
 
     public double getTime() {
         return time;
+    }
+
+    public boolean missed() {
+        return missed;
+    }
+
+    public void setMissed(boolean b) {
+        this.missed = b;
     }
 
     @Override

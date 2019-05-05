@@ -40,19 +40,27 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
         //getting the shot of the specified position
         final Shot shot = shotList.get(position);
         final CardView shotCard = holder.cardView;
+        if (shot.missed()) {
+            shotCard.setBackgroundColor(Color.RED);
+        } else {
+            shotCard.setBackgroundColor(Color.WHITE);
+        }
         holder.itemView.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
-                if (shot.getMissedShots() == 0) {
-                    shotCard.setBackgroundColor(Color.RED);
-                    shot.setMissedShots(1);
-                } else {
-                    shotCard.setBackgroundColor(Color.WHITE);
-                    shot.setMissedShots(0);
+                if (timerActivity.finished == 0) {
+                    if (shot.getMissedShots() == 0) {
+                        shotCard.setBackgroundColor(Color.RED);
+                        shot.setMissed(true);
+                        shot.setMissedShots(1);
+                    } else if (shot.getMissedShots() == 1){
+                        shotCard.setBackgroundColor(Color.WHITE);
+                        shot.setMissed(false);
+                        shot.setMissedShots(0);
+                    }
                 }
-
             }
         });
 
@@ -66,7 +74,6 @@ public class ShotRecyclerAdapter extends RecyclerView.Adapter<ShotRecyclerAdapte
         }catch (Exception e){
             holder.splitTime.setText(String.valueOf(0.0));
         }
-
 
 
     }

@@ -20,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </android.support.design.widget.AppBarLayout>
@@ -69,18 +68,54 @@
         app:layout_constraintStart_toEndOf="@+id/finish"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
 
+    <TextView
+        android:id="@+id/shot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Shot"
+        android:layout_marginStart="40dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/time"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/start" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Time"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/delay"
+        app:layout_constraintEnd_toStartOf="@id/delay"
+        app:layout_constraintStart_toEndOf="@id/shot"
+        app:layout_constraintTop_toBottomOf="@id/stop" />
+
+    <TextView
+        android:id="@+id/delay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Delay"
+        android:textSize="20sp"
+        android:layout_marginEnd="65dp"
+        app:layout_constraintBottom_toBottomOf="@id/time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/new1" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="175dp"
         android:layout_marginBottom="15dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/start" />
+        app:layout_constraintTop_toBottomOf="@+id/time" />
 
 
 </android.support.constraint.ConstraintLayout>

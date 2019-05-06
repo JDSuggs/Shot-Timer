@@ -24,6 +24,42 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:id="@+id/session"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Session"
+        android:layout_marginStart="30dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/dateTime"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout2" />
+
+    <TextView
+        android:id="@+id/dateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Date    "
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/sessionTime"
+        app:layout_constraintEnd_toStartOf="@id/sessionTime"
+        app:layout_constraintStart_toEndOf="@id/session"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout2" />
+
+    <TextView
+        android:id="@+id/sessionTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="Time"
+        android:textSize="20sp"
+        android:layout_marginEnd="65dp"
+        app:layout_constraintBottom_toBottomOf="@id/dateTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout2" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view_historical"
         android:padding="4dp"
@@ -32,7 +68,7 @@
         android:layout_height="match_parent"
         android:layout_marginBottom="15dp"
         android:layout_marginStart="100dp"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="105dp"
         android:layout_marginEnd="100dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

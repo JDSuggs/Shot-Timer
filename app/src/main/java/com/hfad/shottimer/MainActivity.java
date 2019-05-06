@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getWindow().getDecorView().setBackgroundColor(Color.GRAY);
+//        getWindow().getDecorView().setBackgroundColor(Color.GRAY);
         mAuth = FirebaseAuth.getInstance();
         if (checkPermissionFromDevice()) {
         } else {

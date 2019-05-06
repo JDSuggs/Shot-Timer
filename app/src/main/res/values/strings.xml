@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">ShotTimer</string>
-    <string name="title_activity_historical">historicalActivity</string>
-    <string name="title_activity_statistical">statisticalActivity</string>
-    <string name="title_activity_question">questionActivity</string>
-    <string name="title_activity_timer">timerActivity</string>
+    <string name="title_activity_historical">Sessions</string>
+    <string name="title_activity_statistical">Session Stats</string>
+    <string name="title_activity_question">About</string>
+    <string name="title_activity_timer">Shot Timer</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_main">Home</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="finish">Finish</string>

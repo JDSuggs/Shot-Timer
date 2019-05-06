@@ -62,38 +62,18 @@ public class statisticalActivity extends AppCompatActivity {
             session.setText("-----");
             date.setText("-----");
         }
-//        } finally {
-//            delayShots.setText("-----");
-//            missedShots.setText("-----");
-//            penaltyPoint.setText("-----");
-//            shots.setText("-----");
-//            sessionTime.setText("-----");
-//        }
-
-//        try{
-//            ArrayList <Shot> sessionShot = Stats.statList.get(Stats.statList.size()-1).getSessionShotList();
-//            Stats stats = Stats.statList.get(Stats.statList.size()-1);
-//
-//                delayShots.setText(String.valueOf(stats.getAverageDelayBetweenShots()));
-//                missedShots.setText(String.valueOf(stats.getMissedShots()));
-//                penaltyPoint.setText(String.valueOf(stats.getPenaltyPoints()));
-//                shots.setText(String.valueOf(stats.getSessionShots()));
-//
-//
-//
-//        }catch (Exception e){
-
-
-//        }
-
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String csv = delayShots.getText().toString() + "," + missedShots.getText().toString()
-                        + ","+ penaltyPoint.getText().toString() + "," + sessionTime.getText().toString();
+                String csv1 = "Name,Date,Total Time,# Shots,# Missed,Avg Delay Between,Penalty"
+                        + "\n\n";
+                String csv = date.getText().toString() + "," + sessionTime.getText().toString() + ","
+                        + shots.getText().toString() + "," + missedShots.getText().toString() + ","
+                        + delayShots.getText().toString() + "," + penaltyPoint.getText().toString();
                 Intent intent = new Intent(statisticalActivity.this, CreateMessageActivity.class);
                 intent.putExtra("CSV", csv);
+                intent.putExtra("CSV1",csv1);
                 startActivity(intent);
 
             }

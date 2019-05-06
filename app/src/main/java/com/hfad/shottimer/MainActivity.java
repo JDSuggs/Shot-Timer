@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -43,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
                     public void onClick(DialogInterface arg0, int arg1) {
                         mAuth.signOut();
+                        Shot.shotList.clear();
+                        Stats.statList.clear();
                         Intent intent = new Intent(getApplicationContext(), Login.class);
                         startActivity(intent);
                     }

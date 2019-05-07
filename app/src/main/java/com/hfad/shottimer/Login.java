@@ -27,14 +27,20 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends AppCompatActivity {
 
     private static final String TAG = "Login";
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     private final FirebaseFirestore mDb = FirebaseFirestore.getInstance();
 
     private ConstraintLayout mLoggedInGroup;
@@ -82,9 +88,6 @@ public class Login extends AppCompatActivity {
         mLoggedInGroup.setVisibility(View.GONE);
         mLoggedOutGroup.setVisibility(View.VISIBLE);
     }
-
-
-
 
     private void updateUI(FirebaseUser currentUser) {
         if (currentUser != null) {
@@ -170,6 +173,40 @@ public class Login extends AppCompatActivity {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Log.d(TAG, user.getEmail());
                             updateUI(user);
+                            String userId = mAuth.getCurrentUser().getUid();
+                            mDb.collection("users").document(userId)
+                                    .collection("statList").document(userId)
+                                    .collection("stats").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+
+                                        for (QueryDocumentSnapshot document : task.getResult()) {
+                                            String delay = (String) document.get("averageDelayBetweenShots");
+                                            Double avgMissed = (Double) document.get("averageMissedShots");
+                                            String date = (String) document.get("date");
+                                            Double missed = (Double) document.get("missedShots");
+                                            Double numMissed = (Double) document.get("numMissedShots");
+                                            Double penalty = (Double) document.get("penaltyPoints");
+                                            Double sesShots = (Double) document.get("sessionShots");
+                                            Long statNum = (Long) document.get("statNumber");
+                                            Double time = (Double) document.get("totalTime");
+
+                                            Stats stat = new Stats(delay,avgMissed,date,missed,numMissed,penalty,sesShots,statNum,time);
+                                            Stats.statList.add(0,stat);
+                                            Log.d(TAG, document.getId() + " => " + document.getData());
+                                        }
+                                        Collections.sort(Stats.statList, new Comparator<Stats>() {
+                                            @Override
+                                            public int compare(Stats o1, Stats o2) {
+                                                return Integer.compare(o2.getStatNumber(),(o1.getStatNumber()));
+                                            }
+                                        });
+                                    } else {
+                                        Log.d(TAG, "Error getting documents: ", task.getException());
+                                    }
+                                }
+                            });
                             h.postDelayed(r, 1000);
                         } else {
                             // If sign in fails, display a message to the user.

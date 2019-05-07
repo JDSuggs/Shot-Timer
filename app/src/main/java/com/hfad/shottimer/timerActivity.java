@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.IOException;
@@ -31,9 +32,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
+
+import static com.hfad.shottimer.Stats.statList;
 
 
 public class timerActivity extends AppCompatActivity {
@@ -42,7 +48,8 @@ public class timerActivity extends AppCompatActivity {
     //    String pathSaved = "";
     MediaPlayer mediaPlayer;
     final int REQUEST_PERMISSION_CODE = 1000;
-    private FirebaseAuth mAuth;
+    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//    String userId = mAuth.getCurrentUser().getUid();
     private final FirebaseFirestore mDb = FirebaseFirestore.getInstance();
     MediaRecorder mRecorder;
     Thread thread;
@@ -72,7 +79,6 @@ public class timerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//        getSupportActionBar().setDisplayShowTitleEnabled(true);
         //Shot.shotList.clear();
         Shot.COUNTER = 1;
         recyclerView = findViewById(R.id.recycler_view);
@@ -173,6 +179,7 @@ public class timerActivity extends AppCompatActivity {
         }else{
             requestPermissions();
         }
+
     }
 
     @Override
@@ -205,12 +212,19 @@ public class timerActivity extends AppCompatActivity {
             Stats tempStat = new Stats(Shot.shotList);
             tempStat.setDate(currentDateandTime);
             //                        tempStat.setStatNumber(Stats.COUNTERSTAT);
-            Stats.statList.add(0,tempStat);
-            Stats.COUNTERSTAT++;
-            //                        Stats.setStatNumber();
+            statList.add(0,tempStat);
+            String userId = mAuth.getCurrentUser().getUid();
+//            Map<String, Object> sList = new HashMap<>();
+//            sList.put("statList", statList);
+            DocumentReference docRef = mDb.collection("users").document(userId)
+                    .collection("statList").document(userId)
+                    .collection("stats").document();
+            docRef.set(tempStat);
             //Save stats to Firestore here
+            Stats.COUNTERSTAT++;
+//            Stats.setStatNumber();
 
-            //        Shot.shotList.clear();
+//            Shot.shotList.clear();
             adapter.notifyDataSetChanged();
             finished = 1;
             btnStopRecording.setEnabled(false);

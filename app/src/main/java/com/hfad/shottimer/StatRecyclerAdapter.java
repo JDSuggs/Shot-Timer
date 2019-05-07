@@ -51,6 +51,7 @@ public class StatRecyclerAdapter extends RecyclerView.Adapter<StatRecyclerAdapte
 //                    shotCard.setBackgroundColor(Color.BLUE);
 //                    Stats.statList.add(stats);
 //                    statList.remove(position);
+
                     Intent intent = new Intent(mCtx, statisticalActivity.class);
                     intent.putExtra("avgDelayBetweenShots", stats.getAverageDelayBetweenShots());
                     intent.putExtra("numberMissed", stats.getMissedShots());

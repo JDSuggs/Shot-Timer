@@ -15,12 +15,29 @@
     <string name="shotNumber">shotNumber</string>
     <string name="timeShot">timeShot</string>
     <string name="splitTime">splitTime</string>
+    <string name="shot">Shot</string>
+    <string name="time">Time</string>
+    <string name="delay">Delay</string>
 
     <string name="penaltyPoints">Points lost via penalty:</string>
     <string name="sessionShots">Number of shots in session:</string>
     <string name="averageDelayBetweenShots">Average delay between shots:</string>
     <string name="numMissedShots">Number of missed shots:</string>
     <string name="averageMissedShots">Average missed shots:</string>
+    <string name="sessionNum">Session Number&#58;</string>
+    <string name="date1">Date&#58;</string>
+    <string name="sessionTime">Total session time&#58;</string>
+    <string name="lowTime">time</string>
+    <string name="date2">Date&#32;&#32;&#32;&#32;</string>
+    <string name="session">Session</string>
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="name">Name</string>
+    <string name="registering">Only If Registering</string>
+    <string name="login">login</string>
+    <string name="login1">Login</string>
+    <string name="register">register</string>
 
     <string name="resultspenaltyPoints">resultspenaltyPoints</string>
     <string name="resultssessionShots">resultssessionShots</string>
@@ -28,20 +45,22 @@
     <string name="resultsnumMissedShots">resultsnumMissedShots</string>
     <string name="resultsaverageMissedShots">resultsaverageMissedShots</string>
 
-    <string name="about"> \t\t\t\t\tClick the guns button to go to activity to record shots. Then, click the start
-    button to record shots. When finished, click the stop button. To denote a miss, click the shot. \n
-    \t\t\t\tFrom the main menu, click the graph for statistics from your current session. Also, from the
-    main menu, click the clipboard for a history of sessions. \n\t\t\t\t\tClicking a session will display
-    statistics. Also on statistics page, click share button to email your records as a standard
-    csv.</string>
+    <string name="about"> \t\t\t\t\tClick the guns button to go to activity to record shots. Then, click the START
+    button to record shots. When done shooting, click the STOP button. To denote a miss, click the shot itself. \n
+    \t\t\t\tClick the FINISH button to record shot data. FINISH stops recording before saving data if not already done.
+        Shots missed may not be recorded after FINISH button is pressed.\n\t\t\t\t NEW clears the list of shots
+        and allows user to start timer again. NEW also stops recording and saves data before clearing if not already done.
+        Cleared shot lists may not be viewed again.
+    \n\t\t\t\tFrom the main menu, click the graph for statistics from your current session.
+        Click the share button to email your records. Also, from the main menu, click the clipboard
+        for a history of sessions. Clicking a session displays that session\'s statistics. </string>
     <string name="createdBy">Created By:\n Jonathan Suggs and Clif Rojas</string>
 
     <string name="hint">Enter Name</string>
     <string name="send">SEND RECORD</string>
-    <string name="chooser">Send message via...</string>
+    <string name="chooser">Send message via&#8230;</string>
     <string name="statSession">statSession</string>
     <string name="statdate">stateDate</string>
     <string name="sessionLength">sessionLength</string>
-
 
 </resources>

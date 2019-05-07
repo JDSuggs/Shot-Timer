@@ -8,5 +8,4 @@
     tools:context=".statisticalActivity"
     tools:showIn="@layout/activity_statistical">
 
-
 </android.support.constraint.ConstraintLayout>

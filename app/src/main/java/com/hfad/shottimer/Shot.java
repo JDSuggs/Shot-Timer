@@ -19,7 +19,6 @@ public class Shot {
         this.time = time;
         this.shotNumber = COUNTER;
         COUNTER += 1;
-
     }
 
     public double splitTime( Shot shot2){
@@ -29,7 +28,6 @@ public class Shot {
             shot2.setSplitTime(this.time-shot2.time);
             return this.time-shot2.time;
         }
-
     }
 
     public int getShotNumber() {

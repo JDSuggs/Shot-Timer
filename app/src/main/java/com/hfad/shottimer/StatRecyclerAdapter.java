@@ -2,7 +2,6 @@ package com.hfad.shottimer;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,9 +11,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-
 public class StatRecyclerAdapter extends RecyclerView.Adapter<StatRecyclerAdapter.StatViewHolder> {
-
 
     //this context we will use to inflate the layout
     private Context mCtx;
@@ -41,16 +38,10 @@ public class StatRecyclerAdapter extends RecyclerView.Adapter<StatRecyclerAdapte
         try{
             //getting the stats of the specified position
             final Stats stats = statList.get(position);
-            final CardView shotCard = holder.cardViewStat;
-            final Intent[] intent = new Intent[1];
             holder.itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View v) {
-                    // TODO Auto-generated method stub
-//                    shotCard.setBackgroundColor(Color.BLUE);
-//                    Stats.statList.add(stats);
-//                    statList.remove(position);
 
                     Intent intent = new Intent(mCtx, statisticalActivity.class);
                     intent.putExtra("avgDelayBetweenShots", stats.getAverageDelayBetweenShots());
@@ -61,21 +52,14 @@ public class StatRecyclerAdapter extends RecyclerView.Adapter<StatRecyclerAdapte
                     intent.putExtra("session", stats.getStatNumber());
                     intent.putExtra("date", stats.getDate());
                     mCtx.startActivity(intent);
-//                    intent[0] =  new Intent(mCtx, statisticalActivity.class);
-//                    mCtx.startActivity(intent[0]);
-
-                    //stats.setMissedShots(1);
-
                 }
             });
 
             //binding the data with the viewholder views
             holder.statNumber.setText(String.valueOf(stats.getStatNumber()));
-
             holder.statTime.setText(String.valueOf(stats.getDate()));
 
             try{
-
                 holder.sessionLength.setText(Stats.getTimeStr(stats.getTotalTime()));
             }catch (Exception e){
                 holder.sessionLength.setText(String.valueOf(0.0));
@@ -84,34 +68,24 @@ public class StatRecyclerAdapter extends RecyclerView.Adapter<StatRecyclerAdapte
         }catch (Exception e){
             ;
         }
-
-
-
-
     }
-
 
     @Override
     public int getItemCount() {
         return statList.size();
     }
 
-
     class StatViewHolder extends RecyclerView.ViewHolder {
 
         TextView statNumber, statTime, sessionLength;
         CardView cardViewStat;
 
-
         public StatViewHolder(View itemView) {
             super(itemView);
-
             statNumber = itemView.findViewById(R.id.statSession);
             statTime = itemView.findViewById(R.id.statDate);
             sessionLength = itemView.findViewById(R.id.sessionLength);
-
             cardViewStat = itemView.findViewById(R.id.stat_card);
-
         }
     }
 }

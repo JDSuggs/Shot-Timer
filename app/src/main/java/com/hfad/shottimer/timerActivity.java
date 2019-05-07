@@ -8,7 +8,7 @@ import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Environment;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -19,37 +19,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import android.os.Handler;
-import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 import static com.hfad.shottimer.Stats.statList;
 
 
 public class timerActivity extends AppCompatActivity {
-    //Variables
     Button btnRecord, btnStopRecording, btnFinish, btnNew;
     //    String pathSaved = "";
     MediaPlayer mediaPlayer;
     final int REQUEST_PERMISSION_CODE = 1000;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//    String userId = mAuth.getCurrentUser().getUid();
     private final FirebaseFirestore mDb = FirebaseFirestore.getInstance();
     MediaRecorder mRecorder;
     Thread thread;
@@ -68,18 +54,12 @@ public class timerActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ShotRecyclerAdapter adapter;
 
-    public long getTimer() {
-        return startTime;
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timer);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //Shot.shotList.clear();
         Shot.COUNTER = 1;
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
@@ -119,8 +99,6 @@ public class timerActivity extends AppCompatActivity {
 ////                    pathSaved = Environment.getExternalStorageDirectory().getAbsolutePath()
 ////                            +"/"+ UUID.randomUUID().toString()+"_audio_record.3gp";
                     btnStopRecording.setEnabled(true);
-//                    btnPlay.setEnabled(false);
-//                    btnStop.setEnabled(false);
                     Toast.makeText(timerActivity.this, "Recording", Toast.LENGTH_SHORT).show();
                 }
 
@@ -130,9 +108,7 @@ public class timerActivity extends AppCompatActivity {
                 public void onClick(View view){
                     thread=null;
                     btnStopRecording.setEnabled(false);
-//                    btnPlay.setEnabled(true);
                     btnRecord.setEnabled(false);
-//                    btnStop.setEnabled(false);
                 }
             });
             btnFinish.setOnClickListener(new View.OnClickListener(){
@@ -144,10 +120,6 @@ public class timerActivity extends AppCompatActivity {
                     if (Shot.shotList.size() != 0){
                         finish();
                     }
-//                    btnStop.setEnabled(true);
-//                    btnStopRecording.setEnabled(false);
-//                    btnStopRecording.setEnabled(false);
-//                    Toast.makeText(timerActivity.this, "Playing", Toast.LENGTH_SHORT).show();
                 }
             });
             btnNew.setOnClickListener(new View.OnClickListener() {
@@ -164,22 +136,12 @@ public class timerActivity extends AppCompatActivity {
                     btnRecord.setEnabled(true);
                     finished = 0;
                     Shot.COUNTER = 1;
-//                    startTime = 0;
                     adapter.notifyDataSetChanged();
-//                    btnStop.setEnabled(false);
-//                    btnPlay.setEnabled(true);
-
-//                    if(mediaPlayer != null){
-//                        mediaPlayer.stop();
-//                        mediaPlayer.release();
-//                        startRecorder();
-//                    }
                 }
             });
         }else{
             requestPermissions();
         }
-
     }
 
     @Override
@@ -211,26 +173,18 @@ public class timerActivity extends AppCompatActivity {
             String currentDateandTime = sdf.format(new Date());
             Stats tempStat = new Stats(Shot.shotList);
             tempStat.setDate(currentDateandTime);
-            //                        tempStat.setStatNumber(Stats.COUNTERSTAT);
             statList.add(0,tempStat);
             String userId = mAuth.getCurrentUser().getUid();
-//            Map<String, Object> sList = new HashMap<>();
-//            sList.put("statList", statList);
             DocumentReference docRef = mDb.collection("users").document(userId)
                     .collection("statList").document(userId)
                     .collection("stats").document();
             docRef.set(tempStat);
-            //Save stats to Firestore here
             Stats.COUNTERSTAT++;
-//            Stats.setStatNumber();
-
-//            Shot.shotList.clear();
             adapter.notifyDataSetChanged();
             finished = 1;
             btnStopRecording.setEnabled(false);
             btnRecord.setEnabled(false);
         }
-
     }
 
     public void onResume() {

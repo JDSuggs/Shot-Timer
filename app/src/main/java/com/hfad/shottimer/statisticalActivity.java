@@ -3,14 +3,10 @@ package com.hfad.shottimer;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class statisticalActivity extends AppCompatActivity {
 
@@ -75,11 +71,7 @@ public class statisticalActivity extends AppCompatActivity {
                 intent.putExtra("CSV", csv);
                 intent.putExtra("CSV1",csv1);
                 startActivity(intent);
-
             }
         });
-
-
     }
-
 }

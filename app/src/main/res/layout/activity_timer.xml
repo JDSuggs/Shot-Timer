@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:text="Stop"
+        android:text="@string/stop"
         app:layout_constraintEnd_toStartOf="@+id/finish"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/start"
@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:text="Shot"
+        android:text="@string/shot"
         android:layout_marginStart="40dp"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/time"
@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:text="Time"
+        android:text="@string/time"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@id/delay"
         app:layout_constraintEnd_toStartOf="@id/delay"
@@ -97,7 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
-        android:text="Delay"
+        android:text="@string/delay"
         android:textSize="20sp"
         android:layout_marginEnd="65dp"
         app:layout_constraintBottom_toBottomOf="@id/time"
@@ -116,6 +116,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/time" />
-
 
 </android.support.constraint.ConstraintLayout>

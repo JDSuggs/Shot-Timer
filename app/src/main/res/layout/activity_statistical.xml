@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="Session Number:" />
+            android:text="@string/sessionNum" />
 
 
         <TextView
@@ -58,7 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="Date:" />
+            android:text="@string/date1" />
 
 
         <TextView
@@ -135,7 +135,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="Total session time:" />
+            android:text="@string/sessionTime" />
 
         <TextView
             android:id="@+id/totalTimeResults"
@@ -143,7 +143,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:textSize="16sp"
-            android:text="time" />
+            android:text="@string/lowTime" />
 
 
     </GridLayout>

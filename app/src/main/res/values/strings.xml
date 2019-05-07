@@ -8,7 +8,7 @@
     <string name="title_activity_main">Home</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
-    <string name="finish">Finish</string>
+    <string name="finish">SAVE</string>
     <string name="new1">New</string>
     <string name="playAudio">Play Audio</string>
     <string name="stopAudio">Stop Audio</string>
@@ -47,8 +47,8 @@
 
     <string name="about"> \t\t\t\t\tClick the guns button to go to activity to record shots. Then, click the START
     button to record shots. When done shooting, click the STOP button. To denote a miss, click the shot itself. \n
-    \t\t\t\tClick the FINISH button to record shot data. FINISH stops recording before saving data if not already done.
-        Shots missed may not be recorded after FINISH button is pressed.\n\t\t\t\t NEW clears the list of shots
+    \t\t\t\tClick the SAVE button to record shot data. SAVE stops recording before saving data if not already done.
+        Shots missed may not be recorded after SAVE button is pressed.\n\t\t\t\t NEW clears the list of shots
         and allows user to start timer again. NEW also stops recording and saves data before clearing if not already done.
         Cleared shot lists may not be viewed again.
     \n\t\t\t\tFrom the main menu, click the graph for statistics from your current session.

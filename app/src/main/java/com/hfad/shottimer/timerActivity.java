@@ -109,6 +109,7 @@ public class timerActivity extends AppCompatActivity {
                     thread=null;
                     btnStopRecording.setEnabled(false);
                     btnRecord.setEnabled(false);
+                    Toast.makeText(timerActivity.this, "Stopped", Toast.LENGTH_SHORT).show();
                 }
             });
             btnFinish.setOnClickListener(new View.OnClickListener(){
@@ -119,6 +120,8 @@ public class timerActivity extends AppCompatActivity {
                     }
                     if (Shot.shotList.size() != 0){
                         finish();
+                        btnFinish.setEnabled(false);
+                        Toast.makeText(timerActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -134,6 +137,7 @@ public class timerActivity extends AppCompatActivity {
                     Shot.shotList.clear();
                     btnStopRecording.setEnabled(true);
                     btnRecord.setEnabled(true);
+                    btnFinish.setEnabled(true);
                     finished = 0;
                     Shot.COUNTER = 1;
                     adapter.notifyDataSetChanged();
@@ -148,14 +152,14 @@ public class timerActivity extends AppCompatActivity {
     public void onBackPressed() {
         if ((finished == 0) && (Shot.shotList.size() != 0)){
             new AlertDialog.Builder(this)
-                    .setTitle("Finish Session")
-                    .setMessage("Finish the session? \nMisses may not be recorded later.")
+                    .setTitle("Save Session")
+                    .setMessage("Save the session? \nMisses may not be recorded later.")
                     .setNegativeButton(android.R.string.no, null)
                     .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface arg0, int arg1) {
-
                             finish();
+                            btnFinish.setEnabled(false);
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             startActivity(intent);
                         }
